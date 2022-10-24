@@ -1,0 +1,27 @@
+
+.serieRow{
+    background-color: rgb(196, 181, 181);
+}
+.blancox{
+    background-color: rgba(252, 252, 252, 0.856);
+}
+table{
+    margin-left: 20px;
+}
+p{
+    margin-left: 20px;
+}
+.header{
+    background-color: rgba(93, 93, 224, 0.774);
+    padding: 5px 5px 5px 5px;
+}
+h1{
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+}
+a{
+    color: rgba(90, 90, 209, 0.87);
+}
+.content{
+    display: flex;
+}
