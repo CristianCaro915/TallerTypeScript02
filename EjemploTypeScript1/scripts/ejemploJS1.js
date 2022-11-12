@@ -1,0 +1,88 @@
+console.log("hola");
+import { series } from './data.js';
+var dataSeries = series;
+/* Asegurar que si existe elemento "!" */
+var seriesTable = document.getElementById("series");
+function cargarData() {
+    //encabezado
+    var firstRow = document.createElement("tr");
+    var col1 = document.createElement("td");
+    var col2 = document.createElement("td");
+    var col3 = document.createElement("td");
+    var col4 = document.createElement("td");
+    firstRow.className = "blancox";
+    col1.innerHTML = "#";
+    col2.innerHTML = "Nombre";
+    col3.innerHTML = "Channel";
+    col4.innerHTML = "Seasons";
+    firstRow.appendChild(col1);
+    firstRow.appendChild(col2);
+    firstRow.appendChild(col3);
+    firstRow.appendChild(col4);
+    seriesTable.appendChild(firstRow);
+    //vars para hallar promedio
+    var i = 0;
+    var promedioTemporadas = 0;
+    var div = document.getElementsByClassName("card")[0];
+    var imagen = document.createElement("img");
+    var tittle = document.createElement("h5");
+    var text = document.createElement("p");
+    var link = document.createElement("a");
+    imagen.style.display = "none";
+    tittle.style.display = "none";
+    text.style.display = "none";
+    link.style.display = "none";
+    imagen.style.maxHeight = "300px";
+    imagen.style.maxWidth = "300px";
+    imagen.style.paddingLeft = "20px";
+    tittle.style.display = "none";
+    tittle.style.paddingLeft = "20px";
+    text.style.paddingLeft = "20px";
+    link.style.paddingLeft = "20px";
+    div.appendChild(imagen);
+    div.appendChild(tittle);
+    div.appendChild(text);
+    div.appendChild(link);
+    dataSeries.map(function (serie) {
+        var serieRow = document.createElement("tr");
+        var colS1 = document.createElement("td");
+        var colS2 = document.createElement("td");
+        var colS3 = document.createElement("td");
+        var colS4 = document.createElement("td");
+        var aElement = document.createElement("a");
+        aElement.innerHTML = "".concat(serie.name);
+        aElement.href = "#";
+        aElement.id = i.toString();
+        aElement.addEventListener("click", function (event) {
+            imagen.src = "".concat(serie.linkImg);
+            imagen.style.display = "block";
+            imagen.style.alignContent = "center";
+            imagen.style.alignItems = "center";
+            tittle.innerHTML = serie.name;
+            tittle.style.display = "block";
+            text.style.fontFamily = "Verdana, Geneva, Tahoma, sans-serif";
+            text.innerHTML = serie.description;
+            text.style.display = "block";
+            link.innerHTML = "Ver más información";
+            link.href = "".concat(serie.linkView);
+            link.style.display = "block";
+        });
+        colS2.className = "azulejo";
+        serieRow.className = "serieRow";
+        colS1.innerHTML = "".concat(serie.id);
+        colS2.appendChild(aElement);
+        colS3.innerHTML = "".concat(serie.channel);
+        colS4.innerHTML = "".concat(serie.seasons);
+        serieRow.appendChild(colS1);
+        serieRow.appendChild(colS2);
+        serieRow.appendChild(colS3);
+        serieRow.appendChild(colS4);
+        seriesTable.appendChild(serieRow);
+        i += 1;
+        promedioTemporadas += serie.seasons;
+    });
+    var promedio = document.createElement("p");
+    promedio.innerHTML = "Seasons Average: ".concat(promedioTemporadas / i);
+    document.body.appendChild(promedio);
+}
+cargarData();
